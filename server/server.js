@@ -1,16 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const port = 5000;
-// const toysRoutes = require("./routes/toys.js");
-// const categoriesRoutes = require("./routes/categories");
+const port = process.env.Port || 5000;
 const mongoose = require('mongoose');
 const toysRoutes = require("./routes/toys")
 const categoriesRoutes = require("./routes/categories")
 
-app.use(cors())
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+app.use(cors({ origin: true, credentials: true}));
+app.use(express.json({extended: true}))
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -18,8 +15,10 @@ app.get('/', (req, res) => {
 
 app.use("/toys", toysRoutes)
 
+
+
 app.listen(port, () => {
-  mongoose.connect('mongodb+srv://Matrice:QCVasMi5b2MMGwpr@cluster0.bhycl.mongodb.net/Magical-world?retryWrites=true&w=majority')
-        .then(()=>{console.log('connection à mongo resusir');})
+  mongoose.connect('mongodb+srv://Matrice:QCVasMi5b2MMGwpr@cluster0.bhycl.mongodb.net/magical-world?retryWrites=true&w=majority')
+        .then(()=>{console.log('connection à mongo reussi');})
         .catch(()=>{console.log('connection a mongo echoué');})
 })

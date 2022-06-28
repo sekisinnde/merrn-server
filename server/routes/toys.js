@@ -6,7 +6,7 @@
            router.get('/', async(req, res) => {
                 try {                
                     const toys = await Toy.find()
-                    res.send(JSON.stringify(toys, null, 2));
+                    res.json(toys);
                 } catch (error) {
                     console.log(error);
                 };
