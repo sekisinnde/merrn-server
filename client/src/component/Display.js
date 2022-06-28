@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
  
-export default function Home () {
+export default function Display() {
   
   // déclaration du state toys
   const [toys, setToys] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   async function getToys() {
     try {
@@ -15,30 +15,44 @@ export default function Home () {
       console.log(error);
     }
   }
+  async function getCategories() {
+    try {
+      const response = await fetch(`http://localhost:5000/categories/`);
+      const records = await response.json()
+      setCategories(records)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     getToys()
+    getCategories()
   }, [])
  
   // let indexed = toys.findIndex(0)
   // console.log(indexed);
   console.log(toys);
+  console.log(categories);
    
     return (
       <div>
-      <Link to="/">
-      {toys.map((toy, index) => {
+      
+      {toys.map((toy, category, index) => {
         return (
+          <form >
           <div>
-            <p key="index">{toy.name}</p>
-            <p>{toy.category_id}</p>
+            <h1>Toys</h1>
+            <p>{category.name}</p>
+            <p key={index}>{toy.name}</p>
+            <p>{toy.description_id}</p>
             <p>{toy.description}</p>
             <p>{toy.price}</p>
           </div>
     
-    
+          </form>
     )}
   )
   
   
-}</Link></div>)}
+}</div>)}
