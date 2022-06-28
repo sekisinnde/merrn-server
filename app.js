@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  mongoose.connect('mongodb+srv://Matrice:QCVasMi5b2MMGwpr@cluster0.bhycl.mongodb.net/Magical-world?retryWrites=true&w=majority')
+  mongoose.connect('mongodb+srv://Matrice:QCVasMi5b2MMGwpr@cluster0.bhycl.mongodb.net/magical-world?retryWrites=true&w=majority')
         .then(()=>{console.log('connection à mongo resusir');})
         .catch(()=>{console.log('connection a mongo echoué');})
 })
