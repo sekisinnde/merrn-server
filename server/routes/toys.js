@@ -1,14 +1,16 @@
            const express = require('express');
-           const { append } = require('express/lib/response');
-           const { default: mongoose } = require('mongoose');
+           const mongoose = require('mongoose');
            const router = express.Router();
-           const Toy = require ('../modeles/toys');
+           const Toy = require ('../models/toys');
            
            router.get('/', async(req, res) => {
-           const toys = await Toy.find()
-                .catch(()=>console.log('error'));
-                res.send(JSON.stringify(toys, null, 2));
-            });
+                try {                
+                    const toys = await Toy.find()
+                    res.send(JSON.stringify(toys, null, 2));
+                } catch (error) {
+                    console.log(error);
+                };
+           })
             
             router.get('/:id', (req, res) => {
                 let id = req.params.id;

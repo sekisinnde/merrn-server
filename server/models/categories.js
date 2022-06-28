@@ -1,4 +1,4 @@
-const { default: mongoose } = require('mongoose');
+const mongoose= require('mongoose');
  
 // creer schema
  const categorySchema = new mongoose.Schema({

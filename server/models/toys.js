@@ -1,5 +1,5 @@
  
- const { default: mongoose } = require('mongoose');
+ const mongoose= require('mongoose');
 
  // creer schema
   const toysSchema = new mongoose.Schema({
